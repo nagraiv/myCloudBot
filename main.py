@@ -1,16 +1,15 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import telebot
+import os
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+bot = telebot.TeleBot(os.environ['TOKEN'])
 
 
-# Press the green button in the gutter to run the script.
+@bot.message_handler(content_types=["text"])
+def echo(message):
+    bot.send_message(message.chat.id, message.text)
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    bot.polling(none_stop=True)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
