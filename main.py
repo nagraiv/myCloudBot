@@ -1,8 +1,16 @@
 import telebot
+from telebot import types
 import os
 
 
 bot = telebot.TeleBot(os.environ['TOKEN'])
+
+
+def keyboard():
+    markup = types.InlineKeyboardMarkup()
+    btn_my_site = types.InlineKeyboardButton(text='Наш сайт', url='https://habrahabr.ru')
+    markup.add(btn_my_site)
+    return markup
 
 
 @bot.message_handler(commands=["help"])
@@ -12,7 +20,7 @@ def show_help(message):
 
 @bot.message_handler(commands=["start"])
 def start(message):
-    bot.send_message(message.chat.id, 'Вас приветствует эхо бот!')
+    bot.send_message(message.chat.id, 'Вас приветствует эхо бот!', reply_markup=keyboard())
 
 
 @bot.message_handler(content_types=["text"])
