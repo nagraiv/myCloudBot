@@ -6,7 +6,7 @@ bot = telebot.TeleBot(os.environ['TOKEN'])
 
 
 @bot.message_handler(commands=["help"])
-def help(message):
+def show_help(message):
     bot.send_message(message.chat.id, 'Я эхо бот. Я умею только отвечать в точности то, что вы мне написали.')
 
 
