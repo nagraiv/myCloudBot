@@ -29,16 +29,16 @@ def cal(c):
                               c.message.message_id)
 
 
+@bot.message_handler(commands=["help"])
+def show_help(message):
+    bot.send_message(message.chat.id, 'Я эхо бот. Я умею только отвечать в точности то, что вы мне написали.')
+
+
 def keyboard():
     markup = types.InlineKeyboardMarkup()
     btn_my_site = types.InlineKeyboardButton(text='Наш сайт', url='https://habrahabr.ru')
     markup.add(btn_my_site)
     return markup
-
-
-@bot.message_handler(commands=["help"])
-def show_help(message):
-    bot.send_message(message.chat.id, 'Я эхо бот. Я умею только отвечать в точности то, что вы мне написали.')
 
 
 @bot.message_handler(commands=["start"])
