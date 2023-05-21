@@ -9,7 +9,7 @@ bot = telebot.TeleBot(os.environ['TOKEN'])
 
 @bot.message_handler(commands=['date'])
 def choose_date(m):
-    calendar, step = WMonthTelegramCalendar().build()
+    calendar, step = WMonthTelegramCalendar(locale='ru').build()
     bot.send_message(m.chat.id,
                      f"Select {LSTEP[step]}",
                      reply_markup=calendar)
@@ -17,7 +17,7 @@ def choose_date(m):
 
 @bot.callback_query_handler(func=WMonthTelegramCalendar.func())
 def cal(c):
-    result, key, step = WMonthTelegramCalendar().process(c.data)
+    result, key, step = WMonthTelegramCalendar(locale='ru').process(c.data)
     if not result and key:
         bot.edit_message_text(f"Select {LSTEP[step]}",
                               c.message.chat.id,
